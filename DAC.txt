@@ -1,0 +1,89 @@
+*Program 1 – Square Wave Generation using 8051 and DAC*
+
+
+
+#include <reg51.h>
+
+#define DAC P1
+
+void delay(unsigned int count)
+{
+    unsigned int i, j;
+
+    for(i = 0; i < count; i++)
+    {
+        for(j = 0; j < 120; j++);
+    }
+}
+
+void main(void)
+{
+    while(1)
+    {
+        /* Maximum DAC value */
+        DAC = 0xFF;
+        delay(10);
+
+        /* Minimum DAC value */
+        DAC = 0x00;
+        delay(10);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+*Program 2 – Triangular Wave Generation using 8051 and DAC*
+
+
+
+
+#include <reg51.h>
+
+#define DAC P1
+
+void delay(unsigned int count)
+{
+    unsigned int i, j;
+
+    for(i = 0; i < count; i++)
+    {
+        for(j = 0; j < 20; j++);
+    }
+}
+
+void main(void)
+{
+    unsigned int i;
+
+    while(1)
+    {
+        /* Ramp up */
+        for(i = 0; i <= 255; i++)
+        {
+            DAC = (unsigned char)i;
+            delay(1);
+        }
+
+        /* Ramp down */
+        for(i = 255; i > 0; i--)
+        {
+            DAC = (unsigned char)i;
+            delay(1);
+        }
+    }
+}
+
+
+
+
+
+

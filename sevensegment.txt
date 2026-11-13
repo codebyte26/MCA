@@ -1,0 +1,46 @@
+#include <reg51.h>
+
+void delay();
+
+sbit D1 = P3^0;
+sbit D2 = P3^1;
+
+unsigned char arr[] = {
+    0x11, 0xD7, 0x32, 0x92, 0xD4,
+    0x98, 0x18, 0xD3, 0x10, 0x90
+};
+
+void main()
+{
+    unsigned char i, count;
+
+    count = 0;
+
+    while(1)
+    {
+        for(count = 0; count < 100; count++)
+        {
+            for(i = 0; i < 50; i++)
+            {
+                D1 = 1;
+                D2 = 0;
+                P1 = arr[count / 10];
+                delay();
+                D1 = 0;
+
+                D2 = 1;
+                P1 = arr[count % 10];
+                delay();
+                D2 = 0;
+            }
+        }
+    }
+}
+
+void delay()
+{
+    unsigned int a, b;
+
+    for(a = 0; a < 10; a++)
+        for(b = 0; b < 120; b++);
+}

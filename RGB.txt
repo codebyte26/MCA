@@ -1,0 +1,69 @@
+#include <reg51.h>
+
+sbit RED   = P1^0;
+sbit GREEN = P1^1;
+sbit BLUE  = P1^2;
+
+void delay(unsigned int ms)
+{
+    unsigned int i, j;
+
+    for(i = 0; i < ms; i++)
+    {
+        for(j = 0; j < 120; j++);
+    }
+}
+
+void main(void)
+{
+    while(1)
+    {
+        // Red colour
+        RED = 1;
+        GREEN = 0;
+        BLUE = 0;
+        delay(1000);
+
+        // Green colour
+        RED = 0;
+        GREEN = 1;
+        BLUE = 0;
+        delay(1000);
+
+        // Blue colour
+        RED = 0;
+        GREEN = 0;
+        BLUE = 1;
+        delay(1000);
+
+        // Yellow colour (Red + Green)
+        RED = 1;
+        GREEN = 1;
+        BLUE = 0;
+        delay(1000);
+
+        // Cyan colour (Green + Blue)
+        RED = 0;
+        GREEN = 1;
+        BLUE = 1;
+        delay(1000);
+
+        // Magenta colour (Red + Blue)
+        RED = 1;
+        GREEN = 0;
+        BLUE = 1;
+        delay(1000);
+
+        // White colour (Red + Green + Blue)
+        RED = 1;
+        GREEN = 1;
+        BLUE = 1;
+        delay(1000);
+
+        // LED OFF
+        RED = 0;
+        GREEN = 0;
+        BLUE = 0;
+        delay(1000);
+    }
+}
